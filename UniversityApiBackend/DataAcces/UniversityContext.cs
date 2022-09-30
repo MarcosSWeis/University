@@ -17,6 +17,8 @@ namespace UniversityApiBackend.DataAcces
         //lo que hace es basicamente es crearme las tablas en la base de datos que especificamos antes en el appsettings
         public DbSet<User>? Users { get; set; }
         public DbSet<Course>? Courses { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Student> Students { get; set; }
 
     }
 }
