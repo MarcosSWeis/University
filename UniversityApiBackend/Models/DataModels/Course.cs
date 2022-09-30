@@ -22,12 +22,14 @@ namespace UniversityApiBackend.Models.DataModels
         [Required]
         public ICollection<Category> Categories { get; set; } = new List<Category>();
 
+        [Required]
+        public Chapter Chapter { get; set; } = new Chapter();
+
         //que alumonos esta en este curso
         [Required]
         public ICollection<Student> Courses { get; set; } = new List<Student>();
+
         
-        [Required]
-        public Topic Topic { get; set; } = new Topic(); 
 
 
     }

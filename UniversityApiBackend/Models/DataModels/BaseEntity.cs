@@ -11,6 +11,8 @@ namespace UniversityApiBackend.Models.DataModels
         [Key]
         public int Id { get; set; }
         //como CreatedBy no acepta null lo inicializo con un string vacio (String.Empty) , podria haber puesto string? CreatedBy para que acepte null tambien
+
+        //toda propieda que no tenga [Required] quiere decir que puede o no estar
         public string CreatedBy { get; set; }= string.Empty;
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public string UpdatedBy { get; set; } = string.Empty;
