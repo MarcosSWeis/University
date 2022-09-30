@@ -5,8 +5,8 @@ namespace UniversityApiBackend.Models.DataModels
     public class User : BaseEntity
     {
         [Required, StringLength(30)]//campo obligatorio y longitud menor a 30 caracteres
-        public string Name { get; set; } = string.Empty;//en caso que no venga lo pengo un string vacio (string.Empty)
-
+        public string Name { get; set; } = string.Empty;//en caso que no venga lo pengo un string vacio (string.Empty) 
+    
         [Required, StringLength(50)]//campo obligatorio y longitud menor a 50 caracteres
         public string LastName { get; set; } = string.Empty;
 
