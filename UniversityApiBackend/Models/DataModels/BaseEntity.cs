@@ -11,11 +11,11 @@ namespace UniversityApiBackend.Models.DataModels
         [Key]
         public int Id { get; set; }
         //como CreatedBy no acepta null lo inicializo con un string vacio (String.Empty) , podria haber puesto string? CreatedBy para que acepte null tambien
-        public User CreatedBy { get; set; }= new User();
+        public string CreatedBy { get; set; }= string.Empty;
         public DateTime CreatedAt { get; set; } = DateTime.Now;
-        public User UpdatedBy { get; set; } = new User();
+        public string UpdatedBy { get; set; } = string.Empty;
         public DateTime? UpdatedAt { get; set; }
-        public User DeletedBy { get; set; } = new User();
+        public string DeletedBy { get; set; } = string.Empty;
         public DateTime? DeletedAt { get; set; }
         public bool isDeleted { get; set; } = false;
  
