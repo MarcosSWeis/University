@@ -28,6 +28,31 @@ namespace UniversityApiBackend.Controllers
             return await _context.Students.ToListAsync();
         }
 
+        // GET: api/Students/OlderStudents
+        [HttpGet("olderstudents")]       
+        public async Task<ActionResult<IEnumerable<Student>>> OlderStudents()
+        {
+            var students = await _context.Students.Where(student => DateTime.Now.Year - student.Dob.Year >= 18).ToListAsync();
+
+            if (students == null)
+            {
+                return NotFound();
+            }
+            return students;
+        }
+        // GET: api/Students/WhitCourses
+        [HttpGet("WhitCourses")]
+        public async Task<ActionResult<IEnumerable<Student>>> GetSutudentWithCourse()
+        {
+            var students = await _context.Students.Where(student => student.Courses.Count > 0).ToListAsync(); 
+
+            if (students == null)
+            {
+                return NotFound();
+            }
+            return students;
+        }
+
         // GET: api/Students/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Student>> GetStudent(int id)
@@ -84,6 +109,7 @@ namespace UniversityApiBackend.Controllers
             return CreatedAtAction("GetStudent", new { id = student.Id }, student);
         }
 
+
         // DELETE: api/Students/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteStudent(int id)
@@ -104,5 +130,7 @@ namespace UniversityApiBackend.Controllers
         {
             return _context.Students.Any(e => e.Id == id);
         }
+
+      
     }
 }

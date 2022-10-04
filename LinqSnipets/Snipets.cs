@@ -1,4 +1,8 @@
-﻿//importamos
+﻿//ClassLibrary es un proyecto que no tiene I/O
+//Sirve como apoyo a otros proyectos
+//Almacena solo procesos
+
+//importamos
 using System;
 using System.Linq;
 using System.Collections.Generic;

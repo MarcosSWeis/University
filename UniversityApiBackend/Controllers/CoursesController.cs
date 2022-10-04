@@ -28,6 +28,53 @@ namespace UniversityApiBackend.Controllers
             return await _context.Courses.ToListAsync();
         }
 
+        // GET: api/Courses/level
+        [HttpGet("level")]
+        public async Task<ActionResult<IEnumerable<Course>>> GetCoursesByLevel(int lavel)
+        { 
+            if (!(lavel >= 0) && !(lavel <= 3)) //si no esta detro de esterando ([0,3]) tiro un error
+            {
+                return NotFound(); 
+            } 
+            
+               
+               var  response =await _context.Courses.Where(course =>
+                                                                course.Nivel.Equals(lavel) && 
+                                                                course.students.Any())
+                                                                .ToListAsync();
+
+            return response;
+        }
+
+        // GET: api/Courses/level
+        [HttpGet("emptycourses")]
+        public async Task<ActionResult<IEnumerable<Course>>> GetEmptyCourses()
+        {
+                        var response = await _context.Courses.Where(course =>                                                            
+                                                             !course.students.Any())
+                                                             .ToListAsync();
+            return response;
+        }
+
+        // GET: api/Courses/categoryAndLavel
+        [HttpGet("categoryandlavel")]
+        public async Task<ActionResult<IEnumerable<Course>>> GetCoursesByCategoryAndLavel(int lavel, string categoria)
+        {
+            if (!(lavel >= 0) && !(lavel <= 3)) //si no esta detro de esterando ([0,3]) tiro un error
+             return NotFound();
+     
+           var cat = _context.Categories.Where(category => category.Name == categoria);
+
+            if(cat == null)
+                return NotFound();
+
+            var response = await _context.Courses.Where(course =>
+                                                             course.Nivel.Equals(lavel) &&
+                                                             course.Categories.Where(category => category == cat) != null).ToListAsync(); 
+
+            return response;
+        }
+
         // GET: api/Courses/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Course>> GetCourse(int id)
@@ -79,6 +126,7 @@ namespace UniversityApiBackend.Controllers
         public async Task<ActionResult<Course>> PostCourse(Course course)
         {
             _context.Courses.Add(course);
+          
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetCourse", new { id = course.Id }, course);

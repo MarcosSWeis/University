@@ -12,8 +12,8 @@ using UniversityApiBackend.DataAcces;
 namespace UniversityApiBackend.Migrations
 {
     [DbContext(typeof(UniversityContext))]
-    [Migration("20220930162640_CreateUsersTable")]
-    partial class CreateUsersTable
+    [Migration("20221004025145_miragtion")]
+    partial class miragtion
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -44,12 +44,12 @@ namespace UniversityApiBackend.Migrations
                     b.Property<int>("CoursesId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CoursesId1")
+                    b.Property<int>("studentsId")
                         .HasColumnType("int");
 
-                    b.HasKey("CoursesId", "CoursesId1");
+                    b.HasKey("CoursesId", "studentsId");
 
-                    b.HasIndex("CoursesId1");
+                    b.HasIndex("studentsId");
 
                     b.ToTable("CourseStudent");
                 });
@@ -65,8 +65,16 @@ namespace UniversityApiBackend.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("DeletedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -75,47 +83,16 @@ namespace UniversityApiBackend.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("isDeleted")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("UniversityApiBackend.Models.DataModels.Chapter", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("CourseId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("List")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("isDeleted")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CourseId")
-                        .IsUnique();
-
-                    b.ToTable("Chapters");
                 });
 
             modelBuilder.Entity("UniversityApiBackend.Models.DataModels.Course", b =>
@@ -129,8 +106,16 @@ namespace UniversityApiBackend.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("DeletedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LongDescription")
                         .IsRequired()
@@ -153,6 +138,10 @@ namespace UniversityApiBackend.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("isDeleted")
                         .HasColumnType("bit");
 
@@ -172,8 +161,16 @@ namespace UniversityApiBackend.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("DeletedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Dob")
                         .HasColumnType("datetime2");
@@ -188,6 +185,10 @@ namespace UniversityApiBackend.Migrations
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("isDeleted")
                         .HasColumnType("bit");
@@ -205,38 +206,19 @@ namespace UniversityApiBackend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CategoryId1")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CategoryId2")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ChapterId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ChapterId1")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ChapterId2")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CourseId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CourseId1")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CourseId2")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("DeletedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -256,46 +238,17 @@ namespace UniversityApiBackend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("StudentId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("StudentId1")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("StudentId2")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("isDeleted")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("CategoryId1");
-
-                    b.HasIndex("CategoryId2");
-
-                    b.HasIndex("ChapterId");
-
-                    b.HasIndex("ChapterId1");
-
-                    b.HasIndex("ChapterId2");
-
-                    b.HasIndex("CourseId");
-
-                    b.HasIndex("CourseId1");
-
-                    b.HasIndex("CourseId2");
-
-                    b.HasIndex("StudentId");
-
-                    b.HasIndex("StudentId1");
-
-                    b.HasIndex("StudentId2");
 
                     b.ToTable("Users");
                 });
@@ -325,110 +278,9 @@ namespace UniversityApiBackend.Migrations
 
                     b.HasOne("UniversityApiBackend.Models.DataModels.Student", null)
                         .WithMany()
-                        .HasForeignKey("CoursesId1")
+                        .HasForeignKey("studentsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("UniversityApiBackend.Models.DataModels.Chapter", b =>
-                {
-                    b.HasOne("UniversityApiBackend.Models.DataModels.Course", "Course")
-                        .WithOne("Chapter")
-                        .HasForeignKey("UniversityApiBackend.Models.DataModels.Chapter", "CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Course");
-                });
-
-            modelBuilder.Entity("UniversityApiBackend.Models.DataModels.User", b =>
-                {
-                    b.HasOne("UniversityApiBackend.Models.DataModels.Category", null)
-                        .WithMany("CreatedBy")
-                        .HasForeignKey("CategoryId");
-
-                    b.HasOne("UniversityApiBackend.Models.DataModels.Category", null)
-                        .WithMany("DeletedBy")
-                        .HasForeignKey("CategoryId1");
-
-                    b.HasOne("UniversityApiBackend.Models.DataModels.Category", null)
-                        .WithMany("UpdatedBy")
-                        .HasForeignKey("CategoryId2");
-
-                    b.HasOne("UniversityApiBackend.Models.DataModels.Chapter", null)
-                        .WithMany("CreatedBy")
-                        .HasForeignKey("ChapterId");
-
-                    b.HasOne("UniversityApiBackend.Models.DataModels.Chapter", null)
-                        .WithMany("DeletedBy")
-                        .HasForeignKey("ChapterId1");
-
-                    b.HasOne("UniversityApiBackend.Models.DataModels.Chapter", null)
-                        .WithMany("UpdatedBy")
-                        .HasForeignKey("ChapterId2");
-
-                    b.HasOne("UniversityApiBackend.Models.DataModels.Course", null)
-                        .WithMany("CreatedBy")
-                        .HasForeignKey("CourseId");
-
-                    b.HasOne("UniversityApiBackend.Models.DataModels.Course", null)
-                        .WithMany("DeletedBy")
-                        .HasForeignKey("CourseId1");
-
-                    b.HasOne("UniversityApiBackend.Models.DataModels.Course", null)
-                        .WithMany("UpdatedBy")
-                        .HasForeignKey("CourseId2");
-
-                    b.HasOne("UniversityApiBackend.Models.DataModels.Student", null)
-                        .WithMany("CreatedBy")
-                        .HasForeignKey("StudentId");
-
-                    b.HasOne("UniversityApiBackend.Models.DataModels.Student", null)
-                        .WithMany("DeletedBy")
-                        .HasForeignKey("StudentId1");
-
-                    b.HasOne("UniversityApiBackend.Models.DataModels.Student", null)
-                        .WithMany("UpdatedBy")
-                        .HasForeignKey("StudentId2");
-                });
-
-            modelBuilder.Entity("UniversityApiBackend.Models.DataModels.Category", b =>
-                {
-                    b.Navigation("CreatedBy");
-
-                    b.Navigation("DeletedBy");
-
-                    b.Navigation("UpdatedBy");
-                });
-
-            modelBuilder.Entity("UniversityApiBackend.Models.DataModels.Chapter", b =>
-                {
-                    b.Navigation("CreatedBy");
-
-                    b.Navigation("DeletedBy");
-
-                    b.Navigation("UpdatedBy");
-                });
-
-            modelBuilder.Entity("UniversityApiBackend.Models.DataModels.Course", b =>
-                {
-                    b.Navigation("Chapter")
-                        .IsRequired();
-
-                    b.Navigation("CreatedBy");
-
-                    b.Navigation("DeletedBy");
-
-                    b.Navigation("UpdatedBy");
-                });
-
-            modelBuilder.Entity("UniversityApiBackend.Models.DataModels.Student", b =>
-                {
-                    b.Navigation("CreatedBy");
-
-                    b.Navigation("DeletedBy");
-
-                    b.Navigation("UpdatedBy");
                 });
 #pragma warning restore 612, 618
         }

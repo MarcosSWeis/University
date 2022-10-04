@@ -41,6 +41,19 @@ namespace UniversityApiBackend.Controllers
 
             return user;
         }
+        // GET: api/Users/search?email=unEmail
+        [HttpGet("search")]     
+        public async Task<ActionResult<User>> GetUserByEmail(string email)
+        {
+            var user = await _context.Users.Where(user => user.Email == email).FirstOrDefaultAsync();
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return user;
+        }
 
         // PUT: api/Users/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -78,7 +91,11 @@ namespace UniversityApiBackend.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
+          
+
             _context.Users.Add(user);
+            Console.WriteLine($"{user.Name}******************************************************\n\n\n\n\n\n");
+            Console.WriteLine($"{user.Id}******************************************************\n\n\n\n\n\n");
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetUser", new { id = user.Id }, user);
