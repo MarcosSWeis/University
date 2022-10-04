@@ -28,30 +28,7 @@ namespace UniversityApiBackend.Controllers
             return await _context.Students.ToListAsync();
         }
 
-        // GET: api/Students/OlderStudents
-        [HttpGet("olderstudents")]       
-        public async Task<ActionResult<IEnumerable<Student>>> OlderStudents()
-        {
-            var students = await _context.Students.Where(student => DateTime.Now.Year - student.Dob.Year >= 18).ToListAsync();
-
-            if (students == null)
-            {
-                return NotFound();
-            }
-            return students;
-        }
-        // GET: api/Students/WhitCourses
-        [HttpGet("WhitCourses")]
-        public async Task<ActionResult<IEnumerable<Student>>> GetSutudentWithCourse()
-        {
-            var students = await _context.Students.Where(student => student.Courses.Count > 0).ToListAsync(); 
-
-            if (students == null)
-            {
-                return NotFound();
-            }
-            return students;
-        }
+       
 
         // GET: api/Students/5
         [HttpGet("{id}")]
